@@ -29,16 +29,6 @@
 .album-landing .site-menu-trigger { border-color: #fff3dc55; min-height: 46px; padding: 0.5rem 1rem; }
 .site-menu-content { background: #11281ff5; border-color: #f0d4a64a; backdrop-filter: blur(12px); box-shadow: 0 18px 60px #0006; }
 .site-menu-content [role=menuitem]:focus { background: #fff3dc1c; }
-.record-feature { position: absolute; z-index: 8; right: clamp(2rem, 5vw, 5.5rem); bottom: max(6rem, 11dvh); width: clamp(145px, 14vw, 205px); text-align: center; transform: translate(calc(var(--scene-x) * -0.45), calc(var(--scene-y) * -0.45)); }
-.record-kicker { display: block; font-size: 0.875rem; margin-bottom: 1.2rem; text-shadow: 0 2px 12px #000; }
-.record-sleeve { width: 100%; aspect-ratio: 1; position: relative; padding: 0; border: 1px solid #f9dfac99; background: #12231b; box-shadow: 5px 6px 0 #171c13, 7px 8px 0 #ccad7545, 0 16px 40px #0008; transform: rotate(-6deg); transition: transform 350ms cubic-bezier(.2,.65,.25,1), box-shadow 350ms; }
-.record-sleeve img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.record-sleeve:hover, .record-sleeve:focus-visible { transform: translateY(-8px) rotate(-2deg); box-shadow: 3px 4px 0 #171c13, 5px 6px 0 #ccad7570, 0 25px 45px #0009; }
-.sleeve-play { position: absolute; inset: 0; display: grid; place-items: center; color: #fff3dc; background: #08201845; opacity: 0; transition: opacity 220ms; }
-.sleeve-play svg { box-sizing: content-box; padding: 15px; border: 1px solid #fff3dca0; border-radius: 50%; background: #0a1b14bd; }
-.record-sleeve:hover .sleeve-play, .record-sleeve:focus-visible .sleeve-play { opacity: 1; }
-.record-caption { display: inline-flex; justify-content: center; align-items: center; gap: 0.6rem; width: 100%; margin-top: 1.2rem; padding: 0.2rem 0; min-height: 44px; border: 0; background: transparent; color: inherit; font-size: 1rem; text-shadow: 0 2px 15px #000; }
-.record-subtitle { display: block; font-size: 0.8rem; line-height: 1.5; text-shadow: 0 2px 10px #000; }
 .album-landing .landing-footer { z-index: 9; padding: 2.5rem clamp(1.5rem, 4.5vw, 5rem) max(1rem, env(safe-area-inset-bottom)); background: linear-gradient(transparent, #03140eef); }
 .room-controls { display: flex; align-items: center; gap: 1rem; }
 .show-links-button { display: flex; align-items: center; gap: 0.65rem; }
@@ -111,8 +101,6 @@
   .hero-actions { gap: 1rem; margin-top: 1rem; }
   .hero-actions .cream-button { min-width: 110px; padding-inline: 1rem; }
   .story-button { font-size: 0.875rem; }
-  .record-feature { width: 140px; right: 2rem; bottom: 6rem; }
-  .record-subtitle { display: none; }
 }
 @media (orientation: portrait) {
   .album-landing .room { width: min(calc(150dvh - 190px), 250vw); top: calc(50% + 16px); transform: translate(-52%, -50%); }
@@ -127,10 +115,6 @@
   .mobile-release > p:last-child { font-size: 0.875rem; margin: 0.8rem 0 0; }
   .mobile-album-actions { position: absolute; z-index: 8; left: clamp(1.25rem, 5vw, 3rem); bottom: 5.6rem; display: flex; align-items: center; gap: 1.4rem; }
   .mobile-album-actions .cream-button { min-width: 120px; }
-  .record-feature { right: clamp(1.25rem, 5vw, 3rem); bottom: 12.2rem; width: clamp(72px, 20vw, 145px); transform: none; }
-  .record-kicker, .record-caption, .record-subtitle { display: none; }
-  .sleeve-play { opacity: 1; background: #08201820; }
-  .sleeve-play svg { padding: 9px; width: 17px; height: 17px; }
   .album-landing .landing-header { padding: max(1.25rem, env(safe-area-inset-top)) clamp(1.25rem, 5vw, 3rem); }
   .album-landing .landing-footer { padding-inline: clamp(1.25rem, 5vw, 3rem); }
   .motion-button { display: none; }
@@ -152,7 +136,6 @@
 @media (max-width: 380px) and (orientation: portrait) {
   .album-landing .home-identity { font-size: 1.15rem; }
   .album-landing .site-menu-trigger { padding-inline: .7rem; font-size: .875rem; }
-  .record-feature { width: 65px; right: 1.2rem; }
   .album-landing .landing-footer p { font-size: .8rem; }
   .room-controls { gap: .5rem; }
 }
@@ -160,11 +143,10 @@
   .mobile-release { bottom: 9.5rem; }
   .mobile-album-title { font-size: 2.15rem; }
   .mobile-release > p:last-child { display: none; }
-  .record-feature { bottom: 10.5rem; width: 65px; }
   .album-landing .room { top: 42%; }
 }
 @media (max-height: 540px) and (orientation: landscape) {
-  .record-feature, .hero-intro, .scene-title > .eyebrow { display: none; }
+  .hero-intro, .scene-title > .eyebrow { display: none; }
   .album-landing .landing-header { padding-top: 1rem; padding-bottom: 1rem; }
   .scene-title { top: 28%; }
   .scene-title h1 { font-size: 7cqw; }
@@ -177,14 +159,12 @@
   .album-landing .glow-outline { stroke: #ffe0a58c; fill: #ffd5890c; filter: drop-shadow(0 0 8px #ddb16b88); }
   .neon-layer { animation: none; opacity: .4; }
   .motion-button { display: none; }
-  .record-sleeve:hover { transform: rotate(-6deg); }
   .album-listen { opacity: 1; transform: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .album-landing { --scene-x: 0px !important; --scene-y: 0px !important; }
   .scene-title { translate: none; }
   .reveal[data-reveal] { opacity: 1; transform: none; }
-  .record-sleeve:hover, .record-sleeve:focus-visible { transform: rotate(-6deg); }
   .release-artwork:hover, .release-artwork:focus-visible { transform: rotate(-3deg); }
   .video-card:hover .video-artwork img { transform: none; }
   .motion-button { display: none; }

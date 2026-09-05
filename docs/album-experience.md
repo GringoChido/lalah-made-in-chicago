@@ -2,9 +2,9 @@
 
 Build direction selected with Joshua on September 5, 2026.
 
-The fixed photograph remains the homepage. Oversized album typography sits between the base photograph and an SVG-clipped copy of its original pixels. The scene and clipping layer share coordinates. Small pointer movement occurs between the scene, lettering, and featured album sleeve. No generated portrait or generated replacement room is used.
+The fixed photograph remains the homepage. Oversized album typography sits between the base photograph and an SVG-clipped copy of its original pixels. The scene and clipping layer share coordinates. Small pointer movement occurs between the scene and lettering. No generated portrait or generated replacement room is used. The separate "On the record" album card was removed from the homepage at Joshua's request.
 
-The shelf records and featured sleeve open the shared Radix dialog. Its Listen and Story tabs include official single and presave links, label-sourced album context, and an on-demand YouTube lyric video. Playback starts only after pressing the video action. Closing the panel removes the player and restores focus to the opener.
+The shelf records and album actions open the shared Radix dialog. Its Listen and Story tabs include official single and presave links, label-sourced album context, and an on-demand YouTube lyric video. Playback starts only after pressing the video action. Closing the panel removes the player and restores focus to the opener.
 
 The new album leads the Music page, and 47th Street leads Videos. Below-fold content uses progressive Intersection Observer reveals. Mobile uses stable photograph layers, steady glows, a visible album action, and the existing menu. Reduced-motion settings disable scene motion and reveal travel. The pause control stops ambient room animation.
 
