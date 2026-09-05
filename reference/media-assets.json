@@ -1,0 +1,113 @@
+{
+  "verifiedAt": "2026-09-05",
+  "reuse": "Copyrighted artist/label assets; no open reuse license found. Use for the requested artist website context with source attribution/links; rights clearance remains the site owner's responsibility. YouTube videos should remain linked/embedded from official channels. Thumbnail download requests returned a Site Unavailable HTML page, so no local video thumbnail files are stored.",
+  "evidence": "Album image URLs copied from Apple Music source page twitter:image metadata. Video IDs for Poison + The Cure, So In Love, Tunnels are embedded by lalahhathaway.com/home. 47th Street is linked by official Lalah Hathaway Facebook account; all YouTube titles, channels, and hq thumbnails verified with public YouTube oEmbed. 1280x720 images and dates copied from exact watch page og:image/publishDate metadata.",
+  "assets": [
+    {
+      "type": "album",
+      "title": "VANTABLACK",
+      "year": 2024,
+      "file": "album-vantablack.jpg",
+      "source": "https://music.apple.com/us/album/vantablack/1780522542",
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/bd/d4/b7/bdd4b77a-4ada-d5c9-6c98-ab270feea9b8/00039911115077_Cover.jpg/600x600bf-60.jpg"
+    },
+    {
+      "type": "album",
+      "title": "honestly",
+      "year": 2017,
+      "file": "album-honestly.jpg",
+      "source": "https://music.apple.com/us/album/honestly/1440930303",
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/4a/46/5f/4a465f13-75ba-cb85-aa3b-06e16a65dbd9/00842812102158.rgb.jpg/600x600bf-60.jpg"
+    },
+    {
+      "type": "album",
+      "title": "Lalah Hathaway Live",
+      "year": 2015,
+      "file": "album-live.jpg",
+      "source": "https://music.apple.com/us/album/lalah-hathaway-live/1040155116",
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/c9/23/1f/c9231f75-8fba-599a-b01e-1fc4c8e28da1/099923948223.jpg/600x600bf-60.jpg"
+    },
+    {
+      "type": "album",
+      "title": "Where It All Begins",
+      "year": 2011,
+      "yearNote": "Apple lists 2010; common discography 2011. Verify separately if displaying.",
+      "file": "album-where-it-all-begins.jpg",
+      "source": "https://music.apple.com/us/album/where-it-all-begins/1440953977",
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/5e/9e/6f/5e9e6f45-f1cc-4715-a9d9-10ded8ca8e73/00888072330481.rgb.jpg/600x600bf-60.jpg"
+    },
+    {
+      "type": "album",
+      "title": "Self Portrait (Bonus Video Version)",
+      "displayTitle": "Self Portrait",
+      "year": 2008,
+      "file": "album-self-portrait.jpg",
+      "source": "https://music.apple.com/us/album/self-portrait-bonus-video-version/1440937708",
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a5/a4/95/a5a49575-cb25-6207-fee2-fc0d431204c8/00888072308879.rgb.jpg/600x600bf-60.jpg"
+    },
+    {
+      "type": "album",
+      "title": "Lalah Hathaway",
+      "year": 1990,
+      "file": "album-lalah-hathaway.jpg",
+      "source": "https://music.apple.com/us/album/lalah-hathaway/723769556",
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/78/49/8b/78498b77-55b9-3185-b151-0240ae478460/13UABIM31844.rgb.jpg/600x600bf-60.jpg"
+    },
+    {
+      "type": "video",
+      "title": "Lalah Hathaway - 47th Street feat. J. Ivy (Official Lyric Video)",
+      "displayTitle": "47th Street feat. J. Ivy",
+      "category": "Official lyric video",
+      "date": "2026-08-07",
+      "file": null,
+      "proposedFilename": "video-47th-street.jpg",
+      "downloadStatus": "Unavailable: i.ytimg.com returned a Site Unavailable HTML page. Exact verified source image URL retained.",
+      "source": "https://www.youtube.com/watch?v=1st8sAyYuCc",
+      "author": "Lalah Hathaway",
+      "authorUrl": "https://www.youtube.com/@TVLalah",
+      "image": "https://i.ytimg.com/vi/1st8sAyYuCc/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGFogXyhlMA8=&rs=AOn4CLCMTmjszqbFBHUZ3JmsdOcpZXSHYg"
+    },
+    {
+      "type": "video",
+      "title": "Lalah Hathaway 'Poison + The Cure’ (Official Music Video)",
+      "displayTitle": "Poison + The Cure",
+      "category": "Official music video",
+      "date": "2025-07-10",
+      "file": null,
+      "proposedFilename": "video-poison-the-cure.jpg",
+      "downloadStatus": "Unavailable: i.ytimg.com returned a Site Unavailable HTML page. Exact verified source image URL retained.",
+      "source": "https://www.youtube.com/watch?v=IvnI_tTMNgU",
+      "author": "Lalah Hathaway",
+      "authorUrl": "https://www.youtube.com/@TVLalah",
+      "image": "https://i.ytimg.com/vi/IvnI_tTMNgU/maxresdefault.jpg"
+    },
+    {
+      "type": "video",
+      "title": "Lalah Hathaway - 'Tunnels' featuring WILLOW",
+      "displayTitle": "Tunnels feat. WILLOW",
+      "category": "Official artist upload",
+      "date": "2024-11-19",
+      "file": null,
+      "proposedFilename": "video-tunnels.jpg",
+      "downloadStatus": "Unavailable: i.ytimg.com returned a Site Unavailable HTML page. Exact verified source image URL retained.",
+      "source": "https://www.youtube.com/watch?v=29KJ6Y-D8NE",
+      "author": "Lalah Hathaway",
+      "authorUrl": "https://www.youtube.com/@TVLalah",
+      "image": "https://i.ytimg.com/vi/29KJ6Y-D8NE/maxresdefault.jpg"
+    },
+    {
+      "type": "video",
+      "title": "Lalah Hathaway - So In Love (Official Music Video)",
+      "displayTitle": "So In Love",
+      "category": "Official music video",
+      "date": "2024-05-09",
+      "file": null,
+      "proposedFilename": "video-so-in-love.jpg",
+      "downloadStatus": "Unavailable: i.ytimg.com returned a Site Unavailable HTML page. Exact verified source image URL retained.",
+      "source": "https://www.youtube.com/watch?v=_jN5jOjXgDc",
+      "author": "LalahHathawayVEVO",
+      "authorUrl": "https://www.youtube.com/@LalahHathawayVEVO",
+      "image": "https://i.ytimg.com/vi/_jN5jOjXgDc/maxresdefault.jpg"
+    }
+  ]
+}
