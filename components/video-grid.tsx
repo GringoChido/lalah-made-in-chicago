@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Play } from "lucide-react";
 import { videos } from "@/lib/media";
+import { Reveal } from "@/components/reveal";
 
 function VideoThumbnail({ video }: { video: typeof videos[number] }) {
   const [failed, setFailed] = useState(false);
@@ -16,5 +17,5 @@ function VideoThumbnail({ video }: { video: typeof videos[number] }) {
   </a>;
 }
 export function VideoGrid() {
-  return <div className="video-grid">{videos.map(video => <VideoThumbnail key={video.href} video={video} />)}</div>;
+  return <div className="video-grid video-features">{videos.map((video, index) => <Reveal key={video.href} className={index === 0 ? "video-lead" : "video-support"}>{index === 0 && <p className="eyebrow">From Made In Chicago</p>}<VideoThumbnail video={video} /></Reveal>)}</div>;
 }
