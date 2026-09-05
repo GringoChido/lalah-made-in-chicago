@@ -15,7 +15,7 @@ npm run dev:local
 
 ## Netlify
 
-Import this repository into Netlify and select the `main` branch. The included `netlify.toml` defines:
+Link this repository to the existing [Netlify project](https://app.netlify.com/projects/lalah-made-in-chicago) and select the `main` branch. The [first deployment](https://lalah-made-in-chicago.netlify.app) is live. The included `netlify.toml` defines:
 
 - Build command: `npm run build:netlify`
 - Publish directory: `dist/client`

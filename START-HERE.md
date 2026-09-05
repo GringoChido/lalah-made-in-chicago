@@ -17,24 +17,29 @@ Open the local address printed by the development command.
 
 ## GitHub
 
-This folder is already a Git repository. Add the destination repository as a remote, then push the main branch. Replace the example address with your actual repository address.
+The repository is https://github.com/GringoChido/lalah-made-in-chicago. The updated Desktop download already links this address as the `origin` remote.
+
+After committing your changes, push the main branch:
 
 ```sh
-git remote add origin https://github.com/YOUR-ACCOUNT/YOUR-REPOSITORY.git
-git push -u origin main
+git push origin main
 ```
 
-The download's Git configuration has no remote or authentication token. Use your own GitHub login. A private repository is appropriate while reviewing the unreleased campaign.
+The download includes no authentication token. Use your own GitHub login when pushing changes.
 
 ## Netlify
 
-Import the GitHub repository into Netlify. The included `netlify.toml` supplies:
+The Netlify project is https://app.netlify.com/projects/lalah-made-in-chicago. The first deployment is available at https://lalah-made-in-chicago.netlify.app.
+
+To enable automatic updates from GitHub, open Project configuration > Build & deploy > Continuous deployment > Repository, select Link repository, choose the GitHub repository above, and use the `main` branch.
+
+The included `netlify.toml` supplies:
 
 - Build command: `npm run build:netlify`
 - Publish directory: `dist/client`
 - Node version: `22`
 
-The build generates static pages for the homepage and all seven destinations. No Cloudflare Worker is required for the Netlify export. Keep deployment access appropriate for a private design review.
+The build generates static pages for the homepage and all seven destinations. No Cloudflare Worker is required for the Netlify export.
 
 ## Pending content and connections
 
