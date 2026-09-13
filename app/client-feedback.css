@@ -1,6 +1,19 @@
 /* Client review, September 2026. Retain the supplied room and album palette. */
 :root { --utility-font: Arial, Helvetica, sans-serif; --object-gold: #ffca45; }
 
+/* Select a service here, then open the recording directly on that service. */
+.single-links { margin: 0 0 1rem; }
+.single-links-heading { margin: 0 0 .85rem; line-height: 1.6; }
+.single-links-primary { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem; }
+.single-links-primary .cream-button { width: 100%; padding-inline: .8rem; gap: .5rem; font: 400 .9375rem/1.4 var(--utility-font); }
+.single-links-more { margin-top: .6rem; font: 400 .875rem/1.5 var(--utility-font); }
+.single-links-more summary { width: fit-content; min-height: 44px; padding-block: .7rem; cursor: pointer; }
+.single-links-more > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .15rem .8rem; padding: .1rem 0 .6rem; }
+.single-links-more .text-link { min-height: 44px; font-size: .875rem; }
+@media (max-width: 380px) {
+  .single-links-primary { grid-template-columns: 1fr; }
+}
+
 /* The source-aligned masks now carry an unmistakable gold edge and halo. */
 .album-landing .room-link:hover .glow-outline,
 .album-landing .room-link:focus-visible .glow-outline,

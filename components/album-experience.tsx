@@ -6,6 +6,7 @@ import { Dialog, DialogClose, DialogContent, DialogDescription, DialogTitle } fr
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { release } from "@/lib/release";
 import { PlaylistCollection } from "@/components/campaign-media";
+import { SingleLinks } from "@/components/single-links";
 
 type AlbumView = "listen" | "story";
 const AlbumContext = createContext<(view?: AlbumView, origin?: HTMLElement) => void>(() => {});
@@ -73,7 +74,7 @@ export function AlbumExperience({ children }: { children: ReactNode }) {
             <TabsList className="album-tab-list"><TabsTrigger value="listen">Listen</TabsTrigger><TabsTrigger value="story">The story</TabsTrigger></TabsList>
             <TabsContent value="listen" className="album-tab-content">
               <p>Hear “{release.singleTitle},” the new single from Made In Chicago.</p>
-              <a className="cream-button light-sweep" href={release.singleUrl} target="_blank" rel="noopener noreferrer"><Play size={16} fill="currentColor" aria-hidden="true" />Listen to the single<ArrowUpRight size={17} aria-hidden="true" /></a>
+              <SingleLinks />
               <a className="text-link album-presave" href={release.albumUrl} target="_blank" rel="noopener noreferrer">{release.action}<ArrowUpRight size={17} aria-hidden="true" /></a>
               <button className="album-video-trigger" type="button" onClick={() => setPlaying(value => !value)} aria-expanded={playing}><Play size={17} aria-hidden="true" />{playing ? "Close video" : "Watch “47th Street” feat. J. Ivy"}</button>
               {playing && <div className="album-video"><iframe src="https://www.youtube-nocookie.com/embed/1st8sAyYuCc?autoplay=1" title="Lalah Hathaway, 47th Street featuring J. Ivy, official lyric video" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen /></div>}
