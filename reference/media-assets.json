@@ -108,6 +108,51 @@
       "author": "LalahHathawayVEVO",
       "authorUrl": "https://www.youtube.com/@LalahHathawayVEVO",
       "image": "https://i.ytimg.com/vi/_jN5jOjXgDc/maxresdefault.jpg"
+    },
+    {
+      "title": "A Moment",
+      "file": "album-a-moment.jpg",
+      "source": "https://music.apple.com/us/album/a-moment/712722184",
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music6/v4/6c/75/96/6c7596a0-7003-9e07-0e05-81c6f58794bc/00724383954254.jpg/600x600bb.jpg",
+      "bytes": 83965,
+      "type": "album",
+      "verifiedAt": "2026-09-13"
+    },
+    {
+      "title": "Outrun the Sky",
+      "file": "album-outrun-the-sky.jpg",
+      "source": "https://music.apple.com/us/album/outrun-the-sky/275857375",
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music/a0/2d/37/mzi.aphhprth.jpg/600x600bb.jpg",
+      "bytes": 95740,
+      "type": "album",
+      "verifiedAt": "2026-09-13"
+    },
+    {
+      "title": "The Song Lives On",
+      "file": "album-the-song-lives-on.jpg",
+      "source": "https://music.apple.com/us/album/the-song-lives-on/1472873511",
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e2/b3/d4/e2b3d438-fe8e-5b40-be7a-b89f9e4a75ca/886446260013.jpg/600x600bb.jpg",
+      "bytes": 107943,
+      "type": "album",
+      "verifiedAt": "2026-09-13"
+    },
+    {
+      "title": "VANTABLACK: EXPANSION PACK",
+      "file": "album-vantablack-expansion.jpg",
+      "source": "https://music.apple.com/us/album/vantablack-expansion-pack/1822704048",
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/f9/c1/74/f9c174d7-52da-d722-0b44-cbcb8f96df92/039911131176_Cover.jpg/600x600bb.jpg",
+      "bytes": 72527,
+      "type": "album",
+      "verifiedAt": "2026-09-13"
+    },
+    {
+      "title": "Honestly (Deluxe Edition)",
+      "file": "album-honestly-deluxe.jpg",
+      "source": "https://music.apple.com/us/album/honestly-deluxe-edition/1401694160",
+      "image": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/ec/a9/96/eca996da-7851-6a25-afaa-9d770cf091f6/00842812108310.rgb.jpg/600x600bb.jpg",
+      "bytes": 16974,
+      "type": "album",
+      "verifiedAt": "2026-09-13"
     }
   ]
 }

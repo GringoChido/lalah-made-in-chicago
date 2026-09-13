@@ -1,11 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { ArrowUpRight, Play, Plus, Pause, MoveUpRight } from "lucide-react";
+import { ArrowUpRight, Play, Plus, Pause } from "lucide-react";
 import { SiteMenu } from "@/components/site-menu";
 import { AlbumButton } from "@/components/album-experience";
 import { destinations } from "@/lib/destinations";
 import { release } from "@/lib/release";
+import { RoomLabels } from "@/components/room-labels";
+import { AlbumFilmButton, ChicagoMemory } from "@/components/campaign-media";
+import { RoomTransitionLink } from "@/components/room-transition";
+import { campaign, memoryObject } from "@/lib/campaign";
 
 // Reveal original photo pixels above the title. Both photo layers share exact
 // coordinates, preserving identity and avoiding doubled silhouette edges.
@@ -14,6 +18,7 @@ const portraitMask = "M668 270 Q661 264 671 247 L683 229 Q706 221 737 229 L750 2
 export function LandingScene() {
   const [showLinks, setShowLinks] = useState(false);
   const [paused, setPaused] = useState(false);
+  const [activeObject, setActiveObject] = useState<string | null>(null);
   const [returnVisit, setReturnVisit] = useState(false);
   const root = useRef<HTMLElement>(null);
   useEffect(() => {
@@ -35,7 +40,7 @@ export function LandingScene() {
     };
     const queue = () => { if (!frame) frame = requestAnimationFrame(animate); };
     const move = (event: PointerEvent) => {
-      if (paused || !query.matches || event.pointerType === "touch") return;
+      if (paused || showLinks || activeObject || !query.matches || event.pointerType === "touch") return;
       const box = node.getBoundingClientRect();
       targetX = ((event.clientX - box.left) / box.width - 0.5) * 10;
       targetY = ((event.clientY - box.top) / box.height - 0.5) * 6;
@@ -48,7 +53,7 @@ export function LandingScene() {
     node.addEventListener("pointerleave", leave);
     query.addEventListener("change", preference);
     return () => { cancelAnimationFrame(frame); node.removeEventListener("pointermove", move); node.removeEventListener("pointerleave", leave); query.removeEventListener("change", preference); };
-  }, [paused]);
+  }, [paused, showLinks, activeObject]);
 
   return <main ref={root} className={`landing album-landing${showLinks ? " show-links" : ""}${paused ? " motion-paused" : ""}${returnVisit ? " return-visit" : ""}`}>
     <a className="skip-link" href="#room-links">Skip to room links</a>
@@ -57,28 +62,34 @@ export function LandingScene() {
       <div className="scene-shade" aria-hidden="true" />
       <div className="scene-title">
         <p className="eyebrow">The new album</p>
-        <h1><span className="title-made">MADE IN</span><span className="title-chicago">CHICAGO</span></h1>
+        <h1><span className="title-made">Made In</span><span className="title-chicago">Chicago</span></h1>
         <p className="hero-intro">{release.intro}</p>
-        <div className="hero-actions"><AlbumButton className="cream-button light-sweep"><Play size={16} fill="currentColor" aria-hidden="true" />Listen<ArrowUpRight size={17} aria-hidden="true" /></AlbumButton><AlbumButton className="story-button" view="story">Behind the album<Plus size={17} aria-hidden="true" /></AlbumButton></div>
+        <div className="hero-actions"><AlbumButton className="cream-button light-sweep"><Play size={16} fill="currentColor" aria-hidden="true" />Listen<ArrowUpRight size={17} aria-hidden="true" /></AlbumButton><AlbumFilmButton /></div>
       </div>
       <svg className="portrait-layer" viewBox="0 0 1500 1000" preserveAspectRatio="none" aria-hidden="true"><defs><clipPath id="portrait-original-mask"><path d={portraitMask} /></clipPath></defs><image href="/images/landing.webp" width="1500" height="1000" clipPath="url(#portrait-original-mask)" /></svg>
       <svg className="neon-layer" viewBox="0 0 1500 1000" preserveAspectRatio="none" aria-hidden="true"><defs><clipPath id="neon-original-mask"><path d={destinations.find(d => d.id === "videos")!.path} /></clipPath></defs><image href="/images/landing.webp" width="1500" height="1000" clipPath="url(#neon-original-mask)" /></svg>
-      <nav id="room-links" aria-label="Explore the room" tabIndex={-1}>
+      <nav id="room-links" aria-label="Explore the room" tabIndex={-1} onPointerOver={event => {
+        const target = (event.target as Element).closest<HTMLElement>("[data-room-object]");
+        if (event.pointerType !== "touch") setActiveObject(target?.dataset.roomObject ?? null);
+      }} onPointerLeave={() => setActiveObject(null)} onFocus={event => setActiveObject(event.target.closest<HTMLElement>("[data-room-object]")?.dataset.roomObject ?? null)} onBlur={() => setActiveObject(null)}>
         {destinations.map(item => {
           const style = { left: `${item.x / 15}%`, top: `${item.y / 10}%`, width: `${item.w / 15}%`, height: `${item.h / 10}%` } as CSSProperties;
           const content = <>
           <svg className="object-glow" viewBox={`${item.x} ${item.y} ${item.w} ${item.h}`} aria-hidden="true" preserveAspectRatio="none"><defs><clipPath id={`clip-${item.id}`}><path d={item.path} /></clipPath></defs><path className="glow-outline" d={item.path} /><image className="glow-image" href="/images/landing.webp" x="0" y="0" width="1500" height="1000" clipPath={`url(#clip-${item.id})`} /></svg>
-          <span className="object-label">{item.id === "music" ? "Listen to Made In Chicago" : item.label}<MoveUpRight size={12} aria-hidden="true" /></span>
           </>;
           return item.id === "music"
-            ? <AlbumButton key={item.id} className="room-link room-link-music" style={style} label="Listen to Made In Chicago, the records">{content}</AlbumButton>
-            : <a key={item.id} href={`/${item.id}`} className={`room-link room-link-${item.id}`} aria-label={`${item.label}, ${item.object}`} style={style}>{content}</a>;
+            ? <AlbumButton key={item.id} className="room-link room-link-music" style={style} label="Listen to Made In Chicago, the records" objectId={item.id} objectLabel={campaign.playlists.length ? "Music & playlists" : "Music"}>{content}</AlbumButton>
+            : item.id === "tour"
+              ? <RoomTransitionLink key={item.id} direction="tour" href="/tour" className="room-link room-link-tour" aria-label="Tour, the speaker" data-room-object={item.id} data-room-label={item.label} style={style}>{content}</RoomTransitionLink>
+              : <a key={item.id} href={`/${item.id}`} className={`room-link room-link-${item.id}`} aria-label={`${item.label}, ${item.object}`} data-room-object={item.id} data-room-label={item.label} style={style}>{content}</a>;
         })}
+        {campaign.chicagoMemory && <div className="room-link room-link-memory" data-room-object="memory" data-room-label="A Chicago memory" style={{ left: `${memoryObject.x / 15}%`, top: `${memoryObject.y / 10}%`, width: `${memoryObject.w / 15}%`, height: `${memoryObject.h / 10}%` }}><ChicagoMemory><svg className="object-glow" viewBox={`${memoryObject.x} ${memoryObject.y} ${memoryObject.w} ${memoryObject.h}`} aria-hidden="true" preserveAspectRatio="none"><path className="glow-outline" d={memoryObject.path} /></svg></ChicagoMemory></div>}
       </nav>
     </div>
     <header className="landing-header"><a className="home-identity" href="/" aria-label="Lalah Hathaway home">Lalah Hathaway</a><SiteMenu /></header>
-    <div className="mobile-release" aria-hidden="true"><p className="eyebrow">The new album</p><div className="mobile-album-title">MADE IN<br />CHICAGO</div><p>{release.intro}</p></div>
-    <div className="mobile-album-actions"><AlbumButton className="cream-button light-sweep"><Play size={16} fill="currentColor" aria-hidden="true" />Listen</AlbumButton><AlbumButton className="story-button" view="story">The story<Plus size={16} aria-hidden="true" /></AlbumButton></div>
+    <div className="mobile-release" aria-hidden="true"><p className="eyebrow">The new album</p><div className="mobile-album-title">Made In<br />Chicago</div><p>{release.intro}</p></div>
+    <RoomLabels root={root} activeId={activeObject} showAll={showLinks} />
+    <div className="mobile-album-actions"><AlbumButton className="cream-button light-sweep"><Play size={16} fill="currentColor" aria-hidden="true" />Listen</AlbumButton><AlbumFilmButton label="Behind the album" /></div>
     <footer className="landing-footer"><p className="desktop-instruction">Explore the room.</p><p className="touch-instruction">Tap a glowing object.</p><div className="room-controls"><button type="button" className="motion-button" onClick={() => setPaused(value => !value)} aria-pressed={paused} aria-label={paused ? "Resume room motion" : "Pause room motion"}>{paused ? <Play size={13} aria-hidden="true" /> : <Pause size={13} aria-hidden="true" />}</button><button type="button" className="show-links-button" aria-pressed={showLinks} onClick={() => setShowLinks(value => !value)}>{showLinks ? "Hide labels" : "Explore links"}<Plus size={15} aria-hidden="true" /></button></div></footer>
   </main>;
 }

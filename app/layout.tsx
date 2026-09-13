@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./album-experience.css";
+import "./client-feedback.css";
 import { AlbumExperience } from "@/components/album-experience";
+import { RoomTransitionArrival } from "@/components/room-transition";
 
 export const metadata: Metadata = {
   title: { default: "Lalah Hathaway | Made in Chicago", template: "%s | Lalah Hathaway" },
@@ -21,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head><link rel="preload" href="/fonts/magic-vintage.woff" as="font" type="font/woff" crossOrigin="anonymous" /></head>
-      <body className="antialiased"><AlbumExperience>{children}</AlbumExperience></body>
+      <body className="antialiased"><RoomTransitionArrival /><AlbumExperience>{children}</AlbumExperience></body>
     </html>
   );
 }

@@ -9,6 +9,7 @@ import { destinations } from "@/lib/destinations";
 import { albums, socials } from "@/lib/media";
 import { AlbumFeature } from "@/components/album-feature";
 import { Reveal } from "@/components/reveal";
+import { PlaylistCollection } from "@/components/campaign-media";
 
 type Props = { params: Promise<{ section: string }> };
 export function generateStaticParams() {
@@ -34,9 +35,10 @@ export default async function SectionPage({ params }: Props) {
     {section === "bio" && <div className="bio-copy"><h2>Lalah Hathaway</h2><p>Biography coming soon.</p></div>}
     {section === "music" && <>
       <AlbumFeature />
+      <PlaylistCollection />
       <div className="catalog-heading"><p className="eyebrow">Through the years</p><h2>The discography</h2></div>
       <nav className="platform-links" aria-label="Music platforms"><a className="text-link" href="https://open.spotify.com/artist/0uNEy4544VZq2KOl7BsLuo" target="_blank" rel="noopener noreferrer">Spotify <ArrowUpRight size={16} aria-hidden="true" /></a><a className="text-link" href="https://music.apple.com/us/artist/lalah-hathaway/3895759" target="_blank" rel="noopener noreferrer">Apple Music <ArrowUpRight size={16} aria-hidden="true" /></a></nav>
-      <div className="album-grid">{albums.map(album => <Reveal key={album.href}><a className="album-card" href={album.href} target="_blank" rel="noopener noreferrer" aria-label={`Listen to ${album.title} on Apple Music, opens in a new tab`}><div className="album-artwork"><img src={`/images/${album.image}`} alt={`${album.title} album cover`} width="600" height="600" loading="lazy" /><span className="album-listen">Listen <ArrowUpRight size={18} aria-hidden="true" /></span></div><h2>{album.title}</h2></a></Reveal>)}</div>
+      <div className="album-grid">{albums.map(album => <Reveal key={album.href}><a className="album-card" href={album.href} target="_blank" rel="noopener noreferrer" aria-label={`Listen to ${album.title} on Apple Music, opens in a new tab`}><div className={`album-artwork${album.crop ? ` artwork-${album.crop}` : ""}`}><img src={`/images/${album.image}`} alt={`${album.title} album cover`} width="600" height="600" loading="lazy" /><span className="album-listen">Listen <ArrowUpRight size={18} aria-hidden="true" /></span></div><h2>{album.title}</h2>{album.artist && <p className="album-credit">{album.artist}</p>}</a></Reveal>)}</div>
     </>}
     {section === "videos" && <VideoGrid />}
     {section === "tour" && <TourWidget />}

@@ -1,0 +1,102 @@
+/* Client review, September 2026. Retain the supplied room and album palette. */
+:root { --utility-font: Arial, Helvetica, sans-serif; --object-gold: #ffca45; }
+
+/* The source-aligned masks now carry an unmistakable gold edge and halo. */
+.album-landing .room-link:hover .glow-outline,
+.album-landing .room-link:focus-visible .glow-outline,
+.album-landing .room-link:focus-within .glow-outline,
+.album-landing.show-links .glow-outline {
+  fill: #ffd14c22; stroke: #ffe38a; stroke-width: 2.5px;
+  filter: drop-shadow(0 0 3px #ffe38a) drop-shadow(0 0 10px #ffbd20) drop-shadow(0 0 20px #fbb323cc);
+}
+.album-landing .room-link:hover .glow-image,
+.album-landing .room-link:focus-visible .glow-image,
+.album-landing.show-links .glow-image { opacity: .5; }
+.room-label-overlay { position: absolute; inset: 0; z-index: 8; pointer-events: none; }
+.room-label-leaders { position: absolute; inset: 0; overflow: visible; color: #ffdf81; filter: drop-shadow(0 1px 2px #00160d); }
+.room-label-leaders > path { fill: none; stroke: currentColor; stroke-width: 1.5; }
+.room-object-caption { position: absolute; display: flex; align-items: center; justify-content: center; padding: 7px 10px; border: 1px solid #f7c45d; border-radius: 2px; background: #10251cf5; color: #ffebba; font: 400 .875rem/1.35 var(--utility-font); text-align: center; box-shadow: 0 3px 15px #0005; }
+.show-links .scene-title { opacity: .18; }
+.show-links .hero-actions { opacity: 0; visibility: hidden; pointer-events: none; }
+.scene-title { transition: opacity 180ms; }
+.memory-trigger { display: block; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; }
+.memory-trigger:focus-visible { outline: 2px solid #ffe38a; outline-offset: 5px; }
+
+/* Crop only the narrow source-image border, without altering the artwork. */
+.album-artwork.artwork-self-portrait img { transform: scale(1.025); }
+.album-card:hover .artwork-self-portrait img { transform: scale(1.045); }
+.album-credit { margin: .4rem 0 0; font: 400 .875rem/1.5 var(--utility-font); }
+.album-sleeve-flight { position: fixed; left: 0; top: 0; z-index: 1001; object-fit: cover; transform-origin: top left; pointer-events: none; box-shadow: 0 15px 40px #0006; }
+.album-dialog[data-state="open"] { animation: none; }
+
+/* Asset-dependent experiences stay absent until the approved files are supplied. */
+.campaign-dialog { width: min(850px, calc(100vw - 2rem)); max-width: none; max-height: calc(100dvh - 2rem); overflow-y: auto; background: #102b21; color: #fff3dc; border-color: #e0b76b66; padding: clamp(1.25rem, 4vw, 2.5rem); }
+.campaign-dialog h2 { font: 400 clamp(1.7rem, 5vw, 2.5rem)/1.2 var(--display-font); padding-right: 1.5rem; }
+.campaign-dialog p { font: 400 1rem/1.7 var(--utility-font); color: #fff3dc; }
+.campaign-dialog video { display: block; width: 100%; max-height: 65dvh; background: #07160f; }
+.campaign-dialog audio { width: 100%; margin-block: 1rem; }
+.playlist-collection { margin-block: 2rem; }
+.playlist-collection h2 { font-size: 1.75rem; font-weight: 400; }
+.playlist-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 1.5rem; }
+.playlist-sleeve { padding: 1.5rem; border: 1px solid #eac78380; background: #172d23; text-decoration: none; color: #fff3dc; }
+.playlist-sleeve h3 { margin: 1rem 0 .6rem; font-size: 1.5rem; font-weight: 400; }
+.playlist-sleeve p { font: 400 1rem/1.6 var(--utility-font); }
+.playlist-record { display: block; width: 95px; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, #f1c875 0 5%, #1a3026 6% 8%, #f1c875 9% 24%, #101914 25% 42%, #456047 43% 44%, #101914 45% 62%, #456047 63% 64%, #101914 65%); }
+
+/* A wall of concert posters, using Bandsintown's live dates and original links. */
+.page-tour .page-content { display: block; width: min(1320px, 100%); }
+.page-tour::before { background: linear-gradient(#081c16a6, #081c16e6 70%); }
+.page-tour .page-title { margin-bottom: 1.5rem; }
+.tour-panel { background: transparent; border: 0; padding: 0; }
+.tour-panel h2 { font-size: 1.3rem; margin-bottom: 2rem; }
+.tour-panel .bit-widget, .tour-panel .bit-widget * { font-family: var(--utility-font) !important; font-weight: 400 !important; text-transform: none !important; }
+.tour-panel .bit-widget { background: transparent !important; padding: 0 !important; }
+.tour-panel .bit-upcoming-events { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; overflow: visible !important; max-height: none !important; }
+.tour-panel .bit-event { --poster-bg: #18382c; --poster-ink: #fff0d1; display: flex !important; flex-direction: column !important; align-items: stretch !important; justify-content: flex-start !important; gap: 1.25rem !important; min-width: 0 !important; min-height: 540px; margin: 0 !important; padding: 1.5rem !important; border: 1px solid #e7c07b99 !important; background: var(--poster-bg) !important; color: var(--poster-ink) !important; box-shadow: 0 12px 28px #0003; text-decoration: none !important; }
+.tour-panel .bit-event:nth-child(3n + 2) { --poster-bg: #f0dfb9; --poster-ink: #332718; }
+.tour-panel .bit-event:nth-child(3n) { --poster-bg: #744c2e; --poster-ink: #fff0d1; }
+.tour-panel .bit-event::before { content: "Lalah Hathaway"; display: block; font: 400 2rem/1.15 var(--display-font); text-align: center; color: var(--poster-ink); padding-bottom: 180px; background: url('/images/album-made-in-chicago.jpg') center bottom / 150px 150px no-repeat; }
+.tour-panel .bit-event .bit-details-inner-wrapper,
+.tour-panel .bit-event .bit-details-inner-wrapper-vertical-date { display: flex !important; flex: 1 1 auto !important; flex-direction: column !important; width: 100% !important; min-width: 0 !important; margin: 0 !important; gap: 1rem; }
+.tour-panel .bit-event .bit-standalone-date,
+.tour-panel .bit-event .bit-date-wrapper { display: block !important; min-width: 0 !important; width: auto !important; margin: 0 !important; text-align: center !important; }
+.tour-panel .bit-event .bit-date { display: block !important; font-size: 1rem !important; line-height: 1.5 !important; color: var(--poster-ink) !important; font-variant-numeric: tabular-nums; white-space: normal !important; }
+.tour-panel .bit-event .bit-mobile-date-and-share-wrapper { display: none !important; }
+.tour-panel .bit-event .bit-titleWrapper,
+.tour-panel .bit-event .bit-venue { display: flex !important; flex-direction: column !important; align-items: stretch !important; width: 100% !important; min-width: 0 !important; margin: 0 !important; gap: .8rem; text-align: center !important; }
+.tour-panel .bit-event .bit-title-venue { display: block !important; width: 100% !important; margin: 0 !important; white-space: normal !important; font-size: 1rem !important; line-height: 1.5 !important; color: var(--poster-ink) !important; overflow-wrap: anywhere; }
+.tour-panel .bit-event .bit-location { display: block !important; order: -1; width: 100% !important; margin: 0 !important; white-space: normal !important; font: 400 clamp(1.65rem, 2.7vw, 2.35rem)/1.15 var(--display-font) !important; color: var(--poster-ink) !important; overflow-wrap: anywhere; }
+.tour-panel .bit-event .bit-details { width: 100% !important; min-width: 0 !important; margin: 0 !important; }
+.tour-panel .bit-event .bit-event-buttons { display: flex !important; flex-wrap: wrap !important; justify-content: center !important; flex: 0 0 auto !important; gap: .6rem !important; margin-top: auto !important; }
+.tour-panel .bit-event .bit-offers-container,
+.tour-panel .bit-event .bit-rsvp-container { display: flex !important; flex: 1 1 100px !important; justify-content: center; margin: 0 !important; min-width: 0 !important; width: auto !important; }
+.tour-panel .bit-event .bit-button { display: flex !important; align-items: center !important; justify-content: center !important; min-height: 46px !important; width: 100% !important; min-width: 0 !important; margin: 0 !important; padding: .65rem .85rem !important; border-radius: 0 !important; border: 1px solid var(--poster-ink) !important; background: var(--poster-ink) !important; color: var(--poster-bg) !important; font: 400 .9375rem/1.3 var(--utility-font) !important; }
+.tour-panel .bit-event .bit-rsvp { background: transparent !important; color: var(--poster-ink) !important; }
+.tour-panel .bit-event .bit-button:hover { filter: brightness(1.08); }
+.tour-panel .bit-event .bit-description { font-size: .875rem !important; line-height: 1.5 !important; text-align: center; color: var(--poster-ink) !important; }
+.tour-panel .bit-event .bit-description[hidden] { display: none !important; }
+.tour-panel .poster-details-toggle { display: block; width: fit-content; margin: .5rem auto; padding: .5rem 0; min-height: 44px; border: 0; border-bottom: 1px solid currentColor; color: var(--poster-ink); background: transparent; font: 400 .875rem/1.4 var(--utility-font); }
+.tour-panel .bit-widget a:focus-visible, .tour-panel .bit-widget button:focus-visible { outline: 2px solid currentColor !important; outline-offset: 4px; }
+.tour-fallback { margin-top: 2rem; font-family: var(--utility-font); }
+.widget-message { font-family: var(--utility-font); }
+.speaker-transition-cover { position: fixed; inset: 0; z-index: 1000; pointer-events: none; background-color: #16332a; background-image: repeating-linear-gradient(0deg, transparent 0 3px, #071b16 3px 5px), repeating-linear-gradient(90deg, #9b875a66 0 1px, transparent 1px 5px); }
+
+@media (hover: none), (pointer: coarse) {
+  .album-landing .glow-outline { stroke: #ffe18a; fill: #ffca4520; stroke-width: 2px; filter: drop-shadow(0 0 4px #ffdc6b) drop-shadow(0 0 11px #ffc02bcc) drop-shadow(0 0 19px #ffb82088); }
+  .album-landing .glow-image { opacity: .35; }
+}
+@media (orientation: portrait) {
+  .show-links .mobile-release { opacity: 0; }
+  .mobile-release { transition: opacity 180ms; }
+}
+@media (max-width: 960px) { .tour-panel .bit-upcoming-events { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) {
+  .tour-panel .bit-upcoming-events { grid-template-columns: minmax(0, 1fr); }
+  .tour-panel .bit-event { min-height: 0; padding: 1.5rem !important; }
+  .tour-panel .bit-event .bit-location { font-size: 2rem !important; }
+  .campaign-dialog { width: calc(100vw - 1.25rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .speaker-transition-cover, .album-sleeve-flight { display: none; }
+  .album-card:hover .artwork-self-portrait img { transform: scale(1.025); }
+}
