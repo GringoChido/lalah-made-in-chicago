@@ -5,13 +5,18 @@
 .single-links { margin: 0 0 1rem; }
 .single-links-heading { margin: 0 0 .85rem; line-height: 1.6; }
 .single-links-primary { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem; }
-.single-links-primary .cream-button { width: 100%; padding-inline: .8rem; gap: .5rem; font: 400 .9375rem/1.4 var(--utility-font); }
+.service-logo-link { display: flex; align-items: center; justify-content: space-between; gap: .75rem; min-width: 0; padding: .85rem 1rem; color: #fff3dc; text-decoration: none; transition: background-color 180ms, border-color 180ms; }
+.service-logo-primary { min-height: 76px; border: 1px solid #fff3dc80; background: #0a2119; }
+.service-logo-secondary { min-height: 68px; border-bottom: 1px solid #fff3dc50; }
+.service-logo-link:hover { background: #1c4233; border-color: #ffe0a5; }
+.service-logo-link:focus-visible { outline: 2px solid #ffe0a5; outline-offset: 4px; }
+.service-logo-link > svg { flex-shrink: 0; opacity: .7; }
+.service-logo { display: block; width: min(150px, calc(100% - 1.75rem)); height: 40px; object-fit: contain; object-position: left center; }
 .single-links-more { margin-top: .6rem; font: 400 .875rem/1.5 var(--utility-font); }
 .single-links-more summary { width: fit-content; min-height: 44px; padding-block: .7rem; cursor: pointer; }
 .single-links-more > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .15rem .8rem; padding: .1rem 0 .6rem; }
-.single-links-more .text-link { min-height: 44px; font-size: .875rem; }
-@media (max-width: 380px) {
-  .single-links-primary { grid-template-columns: 1fr; }
+@media (max-width: 480px) {
+  .single-links-primary, .single-links-more > div { grid-template-columns: 1fr; }
 }
 
 /* The source-aligned masks now carry an unmistakable gold edge and halo. */
