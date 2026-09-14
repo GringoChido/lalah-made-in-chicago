@@ -6,21 +6,30 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 
-// No network request or storage. Provider and inbox need approval.
+const contactEmail = "info@secondsonproductions.com";
+
 export function ContactForm() {
   const [status, setStatus] = useState("");
-  function checkForm(event: FormEvent<HTMLFormElement>) {
+  function prepareEmail(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setStatus("Your form is ready. This preview does not send or save messages.");
+    const data = new FormData(event.currentTarget);
+    const name = String(data.get("name") ?? "").trim();
+    const email = String(data.get("email") ?? "").trim();
+    const message = String(data.get("message") ?? "").trim();
+    const subject = encodeURIComponent(`Lalah Hathaway website enquiry from ${name}`);
+    const body = encodeURIComponent(`Name: ${name}\r\nEmail: ${email}\r\n\r\n${message}`);
+    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
+    setStatus("Finish sending your message in your email app. If no draft opens, use the email link above.");
   }
   return (
-    <form className="contact-form" onSubmit={checkForm} aria-describedby="contact-preview">
+    <form className="contact-form" onSubmit={prepareEmail} aria-describedby="contact-details contact-email-note">
+      <p id="contact-details" className="contact-details">Email <a href={`mailto:${contactEmail}`}>{contactEmail}</a> or use the form below.</p>
       <div className="form-pair">
         <label htmlFor="contact-name">Name<Input className="form-input" id="contact-name" name="name" autoComplete="name" required maxLength={120} /></label>
         <label htmlFor="contact-email">Email<Input className="form-input" id="contact-email" name="email" type="email" autoComplete="email" required maxLength={254} /></label>
       </div>
       <label htmlFor="contact-message">Message<Textarea className="form-input form-message" id="contact-message" name="message" required minLength={5} maxLength={5000} /></label>
-      <div className="form-bottom"><Button className="cream-button" type="submit">Preview message</Button><p id="contact-preview" className="form-note">Preview only. Message delivery is not connected.</p></div>
+      <div className="form-bottom"><Button className="cream-button" type="submit">Open email</Button><p id="contact-email-note" className="form-note">Opens your email app with your message ready to send.</p></div>
       <p className="form-status" role="status">{status}</p>
     </form>
   );

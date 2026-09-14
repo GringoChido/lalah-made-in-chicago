@@ -1,6 +1,10 @@
 /* Client review, September 2026. Retain the supplied room and album palette. */
 :root { --utility-font: Arial, Helvetica, sans-serif; --object-gold: #ffca45; }
 
+.contact-details { margin: 0 0 2rem; font: 400 1rem/1.6 var(--utility-font); }
+.contact-details a { color: inherit; text-underline-offset: .2em; overflow-wrap: anywhere; }
+.contact-details a:focus-visible { outline: 2px solid #ffe0a5; outline-offset: 4px; }
+
 /* Select a service here, then open the recording directly on that service. */
 .single-links { margin: 0 0 1rem; }
 .single-links-heading { margin: 0 0 .85rem; line-height: 1.6; }
