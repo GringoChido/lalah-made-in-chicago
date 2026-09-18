@@ -10,6 +10,7 @@ import { albums, socials } from "@/lib/media";
 import { AlbumFeature } from "@/components/album-feature";
 import { Reveal } from "@/components/reveal";
 import { PlaylistCollection } from "@/components/campaign-media";
+import { Biography } from "@/components/biography";
 
 type Props = { params: Promise<{ section: string }> };
 export function generateStaticParams() {
@@ -32,7 +33,7 @@ export default async function SectionPage({ params }: Props) {
       <nav className="social-links" aria-label="Lalah's social profiles">{socials.map(social => <a key={social.name} href={social.href} target="_blank" rel="noopener noreferrer"><span>{social.name}</span><ArrowUpRight size={24} aria-hidden="true" /></a>)}</nav>
       <SignupForm />
     </div>}
-    {section === "bio" && <div className="bio-copy"><h2>Lalah Hathaway</h2><p>Biography coming soon.</p></div>}
+    {section === "bio" && <Biography />}
     {section === "music" && <>
       <AlbumFeature />
       <PlaylistCollection />

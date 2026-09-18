@@ -1,6 +1,14 @@
 /* Client review, September 2026. Retain the supplied room and album palette. */
 :root { --utility-font: Arial, Helvetica, sans-serif; --object-gold: #ffca45; }
 
+/* The complete biography reads in the page's normal scroll over the existing photo. */
+.page-bio .page-content { justify-content: flex-start; }
+.bio-copy { width: 100%; max-width: 44rem; padding: clamp(1.25rem, 3vw, 2.5rem); background: #081c16f2; border-top: 1px solid #eac78380; }
+.bio-copy h2 { margin-bottom: 1.5rem; }
+.bio-copy p { font: 400 1.0625rem/1.8 var(--utility-font); margin: 0 0 1.35em; overflow-wrap: break-word; }
+.bio-copy p:last-child { margin-bottom: 0; }
+.bio-copy em { font-style: italic; }
+
 .contact-details { margin: 0 0 2rem; font: 400 1rem/1.6 var(--utility-font); }
 .contact-details a { color: inherit; text-underline-offset: .2em; overflow-wrap: anywhere; }
 .contact-details a:focus-visible { outline: 2px solid #ffe0a5; outline-offset: 4px; }
