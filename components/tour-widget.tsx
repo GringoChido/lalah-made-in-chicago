@@ -9,39 +9,9 @@ export function TourWidget() {
   useEffect(() => {
     const target = container.current;
     if (!target) return;
-    const decorate = () => {
+    const observer = new MutationObserver(() => {
       if (target.querySelector(".bit-event, .bit-no-dates-container")) setState("ready");
-      // Keep the official live feed and its ticket/RSVP handling. Only decorate
-      // its visible event wrappers; do not copy or freeze tour data.
-      target.querySelectorAll<HTMLElement>(".bit-event").forEach(event => {
-        if (event.dataset.posterReady) return;
-        const description = event.querySelector<HTMLElement>(".bit-description");
-        const venue = event.querySelector<HTMLElement>(".bit-title-venue, .bit-venue");
-        if (!venue) return;
-        event.dataset.posterReady = "true";
-        if (description?.textContent?.trim()) {
-          const button = document.createElement("button");
-          button.type = "button";
-          button.className = "poster-details-toggle";
-          button.textContent = "Show details";
-          button.setAttribute("aria-expanded", "false");
-          const id = `tour-details-${++detailCount}`;
-          description.id = id;
-          button.setAttribute("aria-controls", id);
-          description.hidden = true;
-          button.addEventListener("click", e => {
-            e.preventDefault(); e.stopPropagation();
-            const expanded = button.getAttribute("aria-expanded") !== "true";
-            button.setAttribute("aria-expanded", String(expanded));
-            button.textContent = expanded ? "Hide details" : "Show details";
-            description.hidden = !expanded;
-          });
-          description.insertAdjacentElement("beforebegin", button);
-        }
-      });
-    };
-    let detailCount = 0;
-    const observer = new MutationObserver(decorate);
+    });
     observer.observe(target, { childList: true, subtree: true });
     const script = document.createElement("script");
     script.src = "https://widgetv3.bandsintown.com/main.min.js";
@@ -67,7 +37,7 @@ export function TourWidget() {
           data-display-local-dates="false" data-display-past-dates="false"
           data-display-limit="all" data-display-start-time="false"
           data-link-color="rgba(255,243,220,1)" data-display-lineup="false"
-          data-display-details="true" data-show-logo="true" data-display-logo="true"
+          data-display-details="false" data-show-logo="true" data-display-logo="true"
           data-follow-section-position="hidden" data-display-play-my-city="false"
           data-tickets-cta-text="Tickets" data-event-ticket-text="Tickets" data-event-rsvp-cta-text="RSVP"
           data-sold-out-cta-text="Sold out" data-presale-cta-text="Presale"

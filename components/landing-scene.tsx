@@ -75,6 +75,7 @@ export function LandingScene() {
         {destinations.map(item => {
           const style = { left: `${item.x / 15}%`, top: `${item.y / 10}%`, width: `${item.w / 15}%`, height: `${item.h / 10}%` } as CSSProperties;
           const content = <>
+          <svg className="object-halo" viewBox={`${item.x} ${item.y} ${item.w} ${item.h}`} aria-hidden="true" preserveAspectRatio="none"><path d={item.path} /></svg>
           <svg className="object-glow" viewBox={`${item.x} ${item.y} ${item.w} ${item.h}`} aria-hidden="true" preserveAspectRatio="none"><defs><clipPath id={`clip-${item.id}`}><path d={item.path} /></clipPath></defs><path className="glow-outline" d={item.path} /><image className="glow-image" href="/images/landing.webp" x="0" y="0" width="1500" height="1000" clipPath={`url(#clip-${item.id})`} /></svg>
           </>;
           return item.id === "music"
@@ -83,7 +84,7 @@ export function LandingScene() {
               ? <RoomTransitionLink key={item.id} direction="tour" href="/tour" className="room-link room-link-tour" aria-label="Tour, the speaker" data-room-object={item.id} data-room-label={item.label} style={style}>{content}</RoomTransitionLink>
               : <a key={item.id} href={`/${item.id}`} className={`room-link room-link-${item.id}`} aria-label={`${item.label}, ${item.object}`} data-room-object={item.id} data-room-label={item.label} style={style}>{content}</a>;
         })}
-        {campaign.chicagoMemory && <div className="room-link room-link-memory" data-room-object="memory" data-room-label="A Chicago memory" style={{ left: `${memoryObject.x / 15}%`, top: `${memoryObject.y / 10}%`, width: `${memoryObject.w / 15}%`, height: `${memoryObject.h / 10}%` }}><ChicagoMemory><svg className="object-glow" viewBox={`${memoryObject.x} ${memoryObject.y} ${memoryObject.w} ${memoryObject.h}`} aria-hidden="true" preserveAspectRatio="none"><path className="glow-outline" d={memoryObject.path} /></svg></ChicagoMemory></div>}
+        {campaign.chicagoMemory && <div className="room-link room-link-memory" data-room-object="memory" data-room-label="A Chicago memory" style={{ left: `${memoryObject.x / 15}%`, top: `${memoryObject.y / 10}%`, width: `${memoryObject.w / 15}%`, height: `${memoryObject.h / 10}%` }}><ChicagoMemory><svg className="object-halo" viewBox={`${memoryObject.x} ${memoryObject.y} ${memoryObject.w} ${memoryObject.h}`} aria-hidden="true" preserveAspectRatio="none"><path d={memoryObject.path} /></svg><svg className="object-glow" viewBox={`${memoryObject.x} ${memoryObject.y} ${memoryObject.w} ${memoryObject.h}`} aria-hidden="true" preserveAspectRatio="none"><path className="glow-outline" d={memoryObject.path} /></svg></ChicagoMemory></div>}
       </nav>
     </div>
     <header className="landing-header"><a className="home-identity" href="/" aria-label="Lalah Hathaway home">Lalah Hathaway</a><SiteMenu /></header>

@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode, type CSSProperties } from "react";
+import { createContext, useContext, useState, type ReactNode, type CSSProperties } from "react";
 import { ArrowUpRight, Play, X } from "lucide-react";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -9,52 +9,17 @@ import { PlaylistCollection } from "@/components/campaign-media";
 import { SingleLinks } from "@/components/single-links";
 
 type AlbumView = "listen" | "story";
-const AlbumContext = createContext<(view?: AlbumView, origin?: HTMLElement) => void>(() => {});
+const AlbumContext = createContext<(view?: AlbumView) => void>(() => {});
 export const useAlbum = () => useContext(AlbumContext);
 
 export function AlbumExperience({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   const [view, setView] = useState<AlbumView>("listen");
   const [playing, setPlaying] = useState(false);
-  const origin = useRef<HTMLElement | null>(null);
-  const artwork = useRef<HTMLImageElement | null>(null);
-  const flightCleanup = useRef<(() => void) | null>(null);
-  const closing = useRef(false);
-  const flySleeve = useCallback((node: HTMLImageElement, reverse = false, finish?: () => void) => {
-    flightCleanup.current?.();
-    const source = origin.current;
-    if (!source?.isConnected || window.matchMedia("(prefers-reduced-motion: reduce)").matches || !node.animate) { finish?.(); return; }
-    const from = source.getBoundingClientRect();
-    const to = node.getBoundingClientRect();
-    if (!to.width || !to.height || !from.width) { finish?.(); return; }
-    const clone = node.cloneNode() as HTMLImageElement;
-    clone.className = "album-sleeve-flight";
-    clone.alt = "";
-    clone.setAttribute("aria-hidden", "true");
-    Object.assign(clone.style, { width: `${to.width}px`, height: `${to.height}px`, visibility: "visible" });
-    document.body.appendChild(clone);
-    node.style.visibility = "hidden";
-    const scale = Math.min(from.width / to.width, from.height / to.height, 1);
-    const start = { transform: `translate(${from.left + (from.width - to.width * scale) / 2}px, ${from.top + (from.height - to.height * scale) / 2}px) scale(${scale}) rotate(-5deg)`, opacity: .35 };
-    const end = { transform: `translate(${to.left}px, ${to.top}px) scale(1) rotate(0deg)`, opacity: 1 };
-    const animation = clone.animate(reverse ? [end, start] : [start, end], { duration: reverse ? 260 : 420, easing: "cubic-bezier(.2,.7,.2,1)", fill: "forwards" });
-    const cleanup = () => { node.style.visibility = ""; clone.remove(); };
-    flightCleanup.current = () => { animation.cancel(); cleanup(); };
-    animation.finished.then(() => { cleanup(); flightCleanup.current = null; finish?.(); }).catch(cleanup);
-  }, []);
-  const mountArtwork = useCallback((node: HTMLImageElement | null) => {
-    artwork.current = node;
-    if (node) requestAnimationFrame(() => { if (node.isConnected) flySleeve(node); });
-  }, [flySleeve]);
-  useEffect(() => () => flightCleanup.current?.(), []);
-  const openAlbum = (next: AlbumView = "listen", source?: HTMLElement) => { if (closing.current) return; origin.current = source ?? null; setView(next); setOpen(true); };
+  const openAlbum = (next: AlbumView = "listen") => { setView(next); setOpen(true); };
   const changeOpen = (next: boolean) => {
-    if (next) { setOpen(true); return; }
-    if (closing.current) return;
-    closing.current = true;
-    setPlaying(false);
-    const finish = () => { setOpen(false); closing.current = false; };
-    if (artwork.current) flySleeve(artwork.current, true, finish); else finish();
+    if (!next) setPlaying(false);
+    setOpen(next);
   };
   return <AlbumContext.Provider value={openAlbum}>
     {children}
@@ -65,7 +30,7 @@ export function AlbumExperience({ children }: { children: ReactNode }) {
         if (opener) { event.preventDefault(); opener.focus(); opener.removeAttribute("data-album-opener"); }
       }}>
         <DialogClose className="album-close" aria-label="Close album panel"><X size={22} aria-hidden="true" /></DialogClose>
-        <div className="album-dialog-art"><img ref={mountArtwork} src={release.artwork} alt="Made In Chicago album cover" width="900" height="900" /><span>Lalah Hathaway / The new album</span></div>
+        <div className="album-dialog-art"><img src={release.artwork} alt="Made In Chicago album cover" width="900" height="900" /><span>Lalah Hathaway / The new album</span></div>
         <div className="album-dialog-body">
           <p className="eyebrow">Lalah Hathaway</p>
           <DialogTitle className="album-dialog-title">Made In<br />Chicago</DialogTitle>
@@ -94,6 +59,6 @@ export function AlbumButton({ children, className = "", view = "listen", label, 
   return <button type="button" className={className} style={style} aria-label={label} data-room-object={objectId} data-room-label={objectLabel} aria-haspopup="dialog" onClick={event => {
     document.querySelector("[data-album-opener='active']")?.removeAttribute("data-album-opener");
     event.currentTarget.setAttribute("data-album-opener", "active");
-    open(view, event.currentTarget);
+    open(view);
   }}>{children}</button>;
 }
