@@ -78,9 +78,7 @@ export function LandingScene() {
           <svg className="object-halo" viewBox={`${item.x} ${item.y} ${item.w} ${item.h}`} aria-hidden="true" preserveAspectRatio="none"><path d={item.path} /></svg>
           <svg className="object-glow" viewBox={`${item.x} ${item.y} ${item.w} ${item.h}`} aria-hidden="true" preserveAspectRatio="none"><defs><clipPath id={`clip-${item.id}`}><path d={item.path} /></clipPath></defs><path className="glow-outline" d={item.path} /><image className="glow-image" href="/images/landing.webp" x="0" y="0" width="1500" height="1000" clipPath={`url(#clip-${item.id})`} /></svg>
           </>;
-          return item.id === "music"
-            ? <AlbumButton key={item.id} className="room-link room-link-music" style={style} label="Listen to Made In Chicago, the records" objectId={item.id} objectLabel={campaign.playlists.length ? "Music & playlists" : "Music"}>{content}</AlbumButton>
-            : item.id === "tour"
+          return item.id === "tour"
               ? <RoomTransitionLink key={item.id} direction="tour" href="/tour" className="room-link room-link-tour" aria-label="Tour, the speaker" data-room-object={item.id} data-room-label={item.label} style={style}>{content}</RoomTransitionLink>
               : <a key={item.id} href={`/${item.id}`} className={`room-link room-link-${item.id}`} aria-label={`${item.label}, ${item.object}`} data-room-object={item.id} data-room-label={item.label} style={style}>{content}</a>;
         })}
