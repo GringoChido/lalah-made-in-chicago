@@ -1,5 +1,5 @@
 /* Client review, September 2026. Retain the supplied room and album palette. */
-:root { --utility-font: Arial, Helvetica, sans-serif; --object-gold: #ffca45; }
+:root { --utility-font: Arial, Helvetica, sans-serif; --object-amber: #d88b45; }
 
 /* The complete biography reads in the page's normal scroll over the existing photo. */
 .page-bio .page-content { justify-content: flex-start; }
@@ -31,17 +31,13 @@
   .single-links-primary, .single-links-more > div { grid-template-columns: 1fr; }
 }
 
-/* The source-aligned masks now carry an unmistakable gold edge and halo. */
-.album-landing .room-link:hover .glow-outline,
-.album-landing .room-link:focus-visible .glow-outline,
-.album-landing .room-link:focus-within .glow-outline,
-.album-landing.show-links .glow-outline {
-  fill: #ffd14c22; stroke: #ffe38a; stroke-width: 2.5px;
-  filter: drop-shadow(0 0 3px #ffe38a) drop-shadow(0 0 10px #ffbd20) drop-shadow(0 0 20px #fbb323cc);
-}
-.album-landing .room-link:hover .glow-image,
-.album-landing .room-link:focus-visible .glow-image,
-.album-landing.show-links .glow-image { opacity: .5; }
+/* A blurred amber light layer only. No sharp contour or brightened photo copy. */
+.object-halo { display: block; position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; opacity: 0; filter: blur(6px); transition: opacity 240ms; }
+.object-halo path { fill: none; stroke: var(--object-amber); stroke-width: 6px; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.album-landing .room-link:hover .object-halo,
+.album-landing .room-link:focus-visible .object-halo,
+.album-landing .room-link:focus-within .object-halo,
+.album-landing.show-links .object-halo { opacity: .8; }
 .room-label-overlay { position: absolute; inset: 0; z-index: 8; pointer-events: none; }
 .room-label-leaders { position: absolute; inset: 0; overflow: visible; color: #ffdf81; filter: drop-shadow(0 1px 2px #00160d); }
 .room-label-leaders > path { fill: none; stroke: currentColor; stroke-width: 1.5; }
@@ -93,18 +89,16 @@
 .widget-message { font-family: var(--utility-font); }
 .speaker-transition-cover { position: fixed; inset: 0; z-index: 1000; pointer-events: none; background-color: #16332a; background-image: repeating-linear-gradient(0deg, transparent 0 3px, #071b16 3px 5px), repeating-linear-gradient(90deg, #9b875a66 0 1px, transparent 1px 5px); }
 
-/* Blur the whole mobile SVG in screen pixels, so the halo stays soft as the
-   photo scales. Keep the desktop hover treatment unchanged. */
-.object-halo { display: none; position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+/* A light scattering of blurred amber points on touch screens, rather than
+   a continuous halo. Static light also respects reduced-motion preferences. */
 @media (hover: none), (pointer: coarse) {
-  .object-halo { display: block; filter: blur(5px) drop-shadow(0 0 8px #ffbd20); }
-  .object-halo path { fill: none; stroke: #ffcc52; stroke-width: 9px; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
-  .album-landing .glow-outline,
-  .album-landing .room-link:hover .glow-outline,
-  .album-landing .room-link:focus-visible .glow-outline,
-  .album-landing .room-link:focus-within .glow-outline,
-  .album-landing.show-links .glow-outline { stroke: #ffe38a80; fill: #ffca4514; stroke-width: .75px; filter: none; }
-  .album-landing .glow-image { opacity: .4; }
+  .object-halo { filter: blur(2.5px); }
+  .object-halo path { stroke-width: 4px; stroke-dasharray: 1 12; }
+  .album-landing .object-halo,
+  .album-landing .room-link:hover .object-halo,
+  .album-landing .room-link:focus-visible .object-halo,
+  .album-landing .room-link:focus-within .object-halo,
+  .album-landing.show-links .object-halo { opacity: .55; }
 }
 @media (orientation: portrait) {
   .show-links .mobile-release { opacity: 0; }

@@ -21,8 +21,6 @@
 .neon-layer { z-index: 4; opacity: 0.4; filter: brightness(1.4) saturate(1.2); animation: neon-breathe 7s ease-in-out infinite; }
 .album-landing .room-link { z-index: 5; padding: 0; border: 0; background: transparent; color: inherit; }
 .album-landing .room-link:hover, .album-landing .room-link:focus-visible { z-index: 6; }
-.album-landing .glow-outline { fill: transparent; }
-.album-landing .room-link:hover .glow-outline, .album-landing .room-link:focus-visible .glow-outline { fill: #f1c87d12; stroke: #ffe0a575; filter: drop-shadow(0 0 10px #ddb16b80); }
 .album-landing .object-label { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.55rem 0.85rem; background: #092016ed; border-color: #e6cb974d; box-shadow: 0 8px 20px #0004; }
 .album-landing .landing-header { z-index: 10; padding: max(1.5rem, env(safe-area-inset-top)) clamp(1.5rem, 4.5vw, 5rem); align-items: center; background: linear-gradient(#04130cbc, transparent); }
 .album-landing .home-identity { font-size: clamp(1.3rem, 2.2vw, 2rem); text-decoration: none; }
@@ -156,7 +154,6 @@
 }
 @media (hover: none), (pointer: coarse) {
   .album-landing .room { --scene-x: 0px; --scene-y: 0px; }
-  .album-landing .glow-outline { stroke: #ffe0a58c; fill: #ffd5890c; filter: drop-shadow(0 0 8px #ddb16b88); }
   .neon-layer { animation: none; opacity: .4; }
   .motion-button { display: none; }
   .album-listen { opacity: 1; transform: none; }
