@@ -1,6 +1,7 @@
 import { ArrowLeft } from "lucide-react";
 import { SiteMenu } from "@/components/site-menu";
 import { RoomTransitionLink } from "@/components/room-transition";
+import { SiteCredit } from "@/components/site-credit";
 
 export function PageShell({ title, number, variant = "brown", children }: {
   title: string; number: string; variant?: "brown" | "bio" | "tour"; children: React.ReactNode;
@@ -18,7 +19,7 @@ export function PageShell({ title, number, variant = "brown", children }: {
         <div className="page-title"><p>{number} / Made in Chicago</p><h1>{title}</h1></div>
         {children}
       </main>
-      <footer className="page-footer"><a href="/">Lalah Hathaway</a><span>Made in Chicago</span></footer>
+      <footer className="page-footer"><a href="/">Lalah Hathaway</a><span>Made in Chicago</span><SiteCredit /></footer>
     </div>
   );
 }

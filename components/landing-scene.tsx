@@ -9,6 +9,7 @@ import { release } from "@/lib/release";
 import { RoomLabels } from "@/components/room-labels";
 import { AlbumFilmButton, ChicagoMemory } from "@/components/campaign-media";
 import { RoomTransitionLink } from "@/components/room-transition";
+import { SiteCredit } from "@/components/site-credit";
 import { campaign, memoryObject } from "@/lib/campaign";
 
 // Reveal original photo pixels above the title. Both photo layers share exact
@@ -88,6 +89,6 @@ export function LandingScene() {
     <div className="mobile-release" aria-hidden="true"><p className="eyebrow">The new album</p><div className="mobile-album-title">Made In<br />Chicago</div><p>{release.intro}</p></div>
     <RoomLabels root={root} activeId={activeObject} showAll={showLinks} />
     <div className="mobile-album-actions"><AlbumButton className="cream-button light-sweep"><Play size={16} fill="currentColor" aria-hidden="true" />Listen</AlbumButton><AlbumFilmButton label="Behind the album" /></div>
-    <footer className="landing-footer"><p className="desktop-instruction">Explore the room.</p><p className="touch-instruction">Tap a glowing object.</p><div className="room-controls"><button type="button" className="motion-button" onClick={() => setPaused(value => !value)} aria-pressed={paused} aria-label={paused ? "Resume room motion" : "Pause room motion"}>{paused ? <Play size={13} aria-hidden="true" /> : <Pause size={13} aria-hidden="true" />}</button><button type="button" className="show-links-button" aria-pressed={showLinks} onClick={() => setShowLinks(value => !value)}>{showLinks ? "Hide labels" : "Explore links"}<Plus size={15} aria-hidden="true" /></button></div></footer>
+    <footer className="landing-footer"><div className="landing-footer-text"><p className="desktop-instruction">Explore the room.</p><p className="touch-instruction">Tap a glowing object.</p><SiteCredit /></div><div className="room-controls"><button type="button" className="motion-button" onClick={() => setPaused(value => !value)} aria-pressed={paused} aria-label={paused ? "Resume room motion" : "Pause room motion"}>{paused ? <Play size={13} aria-hidden="true" /> : <Pause size={13} aria-hidden="true" />}</button><button type="button" className="show-links-button" aria-pressed={showLinks} onClick={() => setShowLinks(value => !value)}>{showLinks ? "Hide labels" : "Explore links"}<Plus size={15} aria-hidden="true" /></button></div></footer>
   </main>;
 }
