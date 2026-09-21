@@ -9,8 +9,10 @@ export function TourWidget() {
   useEffect(() => {
     const target = container.current;
     if (!target) return;
+    // Bandsintown renders an empty schedule as its play-my-city prompt, not as a
+    // no-dates container, so match the widget shell rather than the date rows.
     const observer = new MutationObserver(() => {
-      if (target.querySelector(".bit-event, .bit-no-dates-container")) setState("ready");
+      if (target.querySelector(".bit-event, .bit-no-dates-container, .bit-events-container, .bit-play-my-city-wrapper")) setState("ready");
     });
     observer.observe(target, { childList: true, subtree: true });
     const script = document.createElement("script");
