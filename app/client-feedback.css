@@ -32,12 +32,12 @@
 }
 
 /* A blurred amber light layer only. No sharp contour or brightened photo copy. */
-.object-halo { display: block; position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; opacity: 0; filter: blur(6px); transition: opacity 240ms; }
-.object-halo path { fill: none; stroke: var(--object-amber); stroke-width: 6px; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.object-halo { display: block; position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; opacity: 0; filter: blur(8px); transition: opacity 240ms; }
+.object-halo path { fill: none; stroke: var(--object-amber); stroke-width: 12px; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
 .album-landing .room-link:hover .object-halo,
 .album-landing .room-link:focus-visible .object-halo,
 .album-landing .room-link:focus-within .object-halo,
-.album-landing.show-links .object-halo { opacity: .8; }
+.album-landing.show-links .object-halo { opacity: 1; }
 .room-label-overlay { position: absolute; inset: 0; z-index: 8; pointer-events: none; }
 .room-label-leaders { position: absolute; inset: 0; overflow: visible; color: #ffdf81; filter: drop-shadow(0 1px 2px #00160d); }
 .room-label-leaders > path { fill: none; stroke: currentColor; stroke-width: 1.5; }
@@ -92,13 +92,13 @@
 /* A light scattering of blurred amber points on touch screens, rather than
    a continuous halo. Static light also respects reduced-motion preferences. */
 @media (hover: none), (pointer: coarse) {
-  .object-halo { filter: blur(2.5px); }
-  .object-halo path { stroke-width: 4px; stroke-dasharray: 1 12; }
+  .object-halo { filter: blur(3px); }
+  .object-halo path { stroke-width: 6px; stroke-dasharray: 1 12; }
   .album-landing .object-halo,
   .album-landing .room-link:hover .object-halo,
   .album-landing .room-link:focus-visible .object-halo,
   .album-landing .room-link:focus-within .object-halo,
-  .album-landing.show-links .object-halo { opacity: .55; }
+  .album-landing.show-links .object-halo { opacity: .85; }
 }
 @media (orientation: portrait) {
   .show-links .mobile-release { opacity: 0; }
