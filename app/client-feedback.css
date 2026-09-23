@@ -89,11 +89,11 @@
 .widget-message { font-family: var(--utility-font); }
 .speaker-transition-cover { position: fixed; inset: 0; z-index: 1000; pointer-events: none; background-color: #16332a; background-image: repeating-linear-gradient(0deg, transparent 0 3px, #071b16 3px 5px), repeating-linear-gradient(90deg, #9b875a66 0 1px, transparent 1px 5px); }
 
-/* A light scattering of blurred amber points on touch screens, rather than
-   a continuous halo. Static light also respects reduced-motion preferences. */
+/* Continuous blurred amber light on touch screens, with no sharp contour.
+   Preserve the approved hue, blur, width and opacity while filling the gaps. */
 @media (hover: none), (pointer: coarse) {
   .object-halo { filter: blur(3px); }
-  .object-halo path { stroke-width: 6px; stroke-dasharray: 1 12; }
+  .object-halo path { stroke-width: 6px; stroke-dasharray: none; }
   .album-landing .object-halo,
   .album-landing .room-link:hover .object-halo,
   .album-landing .room-link:focus-visible .object-halo,
