@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { newsletter } from "@/lib/newsletter";
 
 const contactEmail = "info@secondsonproductions.com";
 
@@ -39,17 +40,28 @@ export function SignupForm() {
   const [consent, setConsent] = useState(false);
   const [status, setStatus] = useState("");
   function checkSignup(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (!consent) { setStatus("Please select the email consent box."); return; }
-    setStatus("Your form is ready. This preview does not save your email or subscribe you.");
+    if (!newsletter.enabled) {
+      event.preventDefault();
+      return;
+    }
+    if (!consent) {
+      event.preventDefault();
+      setStatus("Please select the email consent box.");
+      return;
+    }
+    // Use the native POST action supplied by this account's MailerLite HTML
+    // export. MailerLite presents the result; submission alone is not success.
+    setStatus("Follow the instructions in the new tab to finish signing up.");
   }
   return (
-    <form className="signup-form" onSubmit={checkSignup} aria-describedby="signup-preview">
+    <form className="signup-form" action={newsletter.enabled ? newsletter.formAction : undefined} method="post" target="_blank" rel="noopener noreferrer" onSubmit={checkSignup} aria-describedby="signup-note">
       <h2>Stay in touch</h2><p>Music, show announcements, and updates from Lalah.</p>
-      <label htmlFor="signup-email">Email address<Input className="form-input" id="signup-email" name="email" type="email" autoComplete="email" maxLength={254} required /></label>
-      <div className="consent-row"><Checkbox id="signup-consent" checked={consent} onCheckedChange={checked => setConsent(checked === true)} /><label htmlFor="signup-consent">I agree to receive email updates from Lalah Hathaway.</label></div>
-      <Button className="cream-button" type="submit">Preview sign up</Button>
-      <p className="form-note" id="signup-preview">Preview only. The mailing list is not connected.</p>
+      <label htmlFor="signup-email">Email address<Input className="form-input" id="signup-email" name="fields[email]" type="email" autoComplete="email" maxLength={254} required disabled={!newsletter.enabled} /></label>
+      <div className="consent-row"><Checkbox id="signup-consent" required disabled={!newsletter.enabled} checked={consent} onCheckedChange={checked => setConsent(checked === true)} /><label htmlFor="signup-consent">I agree to receive email updates from Lalah Hathaway.</label></div>
+      <input type="hidden" name="ml-submit" value="1" />
+      <input type="hidden" name="anticsrf" value="true" />
+      <Button className="cream-button" type="submit" disabled={!newsletter.enabled}>{newsletter.enabled ? "Sign up" : "Coming soon"}</Button>
+      <p className="form-note" id="signup-note">{newsletter.enabled ? "Opens in a new tab. Check your inbox to confirm your subscription. You can unsubscribe at any time." : "Email signup is coming soon. Please check back."}</p>
       <p className="form-status" role="status">{status}</p>
     </form>
   );

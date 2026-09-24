@@ -1,7 +1,7 @@
 # Latest launch handoff
 
 - September 24 feedback: Steph likes the continuous mobile glow and requests it about 40% fainter. Mobile/touch opacity reduced from .85 to .51; amber #d88b45, blur, stroke width and continuous shape retained. Desktop glow unchanged. Room-label arrows/leaders and label borders now use the same amber as the glow. Latest revision awaits her visual confirmation. No sharp outline layer.
-- VB owns the newsletter account. Platform/account access, sender details, Stripe, merch details, shipping and tax settings are still pending.
+- MailerLite chosen and Lalah Hathaway account created by Josh. Account access verified; website form and signup group created, with double opt-in enabled. Sender defaults to josh@secondsonproductions.com. Activation is blocked by secondsonproductions.com domain authentication, including conflicting SPF records at JustHost. Website hookup is configured with signups paused behind `newsletter.enabled: false`; the review form shows Coming soon. End-to-end signup testing and activation remain pending domain authentication. See `docs/mailerlite-setup.md`. Stripe, merch details, shipping and tax settings remain pending.
 - Steph has exported the Bandzoogle list and holds other Lalah lists. Compiler/import owner still needs confirmation. Do not assume an absent unsubscribe file proves every address is subscribed. Verify export filtering/status before combining lists, deduplicate and retain opt-outs.
 - Steph plans to deliver video, Spotify playlist and Chicago memory audio by Monday.
 - Proposed schedule: final elements Monday, transfer Monday/Tuesday, album launch Thursday. Exact calendar dates and feasibility remain unconfirmed pending assets, access and end-to-end testing.
