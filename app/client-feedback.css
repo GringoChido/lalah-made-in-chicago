@@ -39,9 +39,9 @@
 .album-landing .room-link:focus-within .object-halo,
 .album-landing.show-links .object-halo { opacity: 1; }
 .room-label-overlay { position: absolute; inset: 0; z-index: 8; pointer-events: none; }
-.room-label-leaders { position: absolute; inset: 0; overflow: visible; color: #ffdf81; filter: drop-shadow(0 1px 2px #00160d); }
+.room-label-leaders { position: absolute; inset: 0; overflow: visible; color: var(--object-amber); filter: drop-shadow(0 1px 2px #00160d); }
 .room-label-leaders > path { fill: none; stroke: currentColor; stroke-width: 1.5; }
-.room-object-caption { position: absolute; display: flex; align-items: center; justify-content: center; padding: 7px 10px; border: 1px solid #f7c45d; border-radius: 2px; background: #10251cf5; color: #ffebba; font: 400 .875rem/1.35 var(--utility-font); text-align: center; box-shadow: 0 3px 15px #0005; }
+.room-object-caption { position: absolute; display: flex; align-items: center; justify-content: center; padding: 7px 10px; border: 1px solid var(--object-amber); border-radius: 2px; background: #10251cf5; color: #ffebba; font: 400 .875rem/1.35 var(--utility-font); text-align: center; box-shadow: 0 3px 15px #0005; }
 .show-links .scene-title { opacity: .18; }
 .show-links .hero-actions { opacity: 0; visibility: hidden; pointer-events: none; }
 .scene-title { transition: opacity 180ms; }
@@ -90,7 +90,7 @@
 .speaker-transition-cover { position: fixed; inset: 0; z-index: 1000; pointer-events: none; background-color: #16332a; background-image: repeating-linear-gradient(0deg, transparent 0 3px, #071b16 3px 5px), repeating-linear-gradient(90deg, #9b875a66 0 1px, transparent 1px 5px); }
 
 /* Continuous blurred amber light on touch screens, with no sharp contour.
-   Preserve the approved hue, blur, width and opacity while filling the gaps. */
+   Preserve hue, blur and width; reduce opacity by 40% from .85 to .51. */
 @media (hover: none), (pointer: coarse) {
   .object-halo { filter: blur(3px); }
   .object-halo path { stroke-width: 6px; stroke-dasharray: none; }
@@ -98,7 +98,7 @@
   .album-landing .room-link:hover .object-halo,
   .album-landing .room-link:focus-visible .object-halo,
   .album-landing .room-link:focus-within .object-halo,
-  .album-landing.show-links .object-halo { opacity: .85; }
+  .album-landing.show-links .object-halo { opacity: .51; }
 }
 @media (orientation: portrait) {
   .show-links .mobile-release { opacity: 0; }
