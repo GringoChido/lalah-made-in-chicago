@@ -44,7 +44,34 @@ export default async function SectionPage({ params }: Props) {
     {section === "videos" && <VideoGrid />}
     {section === "tour" && <TourWidget />}
     {section === "merch" && <>
-      <div className="merch-panel"><h2>The official shop</h2><p>Visit Lalah’s store for merchandise and availability.</p><a className="cream-button inline-button" href="https://lalahhathaway.com/home" target="_blank" rel="noopener noreferrer">Visit the store <ArrowUpRight size={19} aria-hidden="true" /></a></div>
+      <div className="merch-intro">
+        <p>Bring a little Made in Chicago home.</p>
+        <p className="merch-availability">Online ordering is coming soon. All prices in USD.</p>
+      </div>
+      <section className="merch-grid" aria-label="Made in Chicago merchandise">
+        <article className="merch-product" aria-labelledby="vinyl-title">
+          <div className="merch-product-image"><img src="/images/merch/made-in-chicago-vinyl.jpg" width="1200" height="1200" alt="Mockup of the Made in Chicago vinyl sleeve with Lalah’s listening-room photograph and a partially visible record." /></div>
+          <div className="merch-product-heading"><h2 id="vinyl-title">Made in Chicago vinyl</h2><p className="merch-price">$40</p></div>
+          <p className="merch-description">Made in Chicago on vinyl, featuring Lalah’s listening-room artwork.</p>
+        </article>
+        <article className="merch-product" aria-labelledby="tshirt-title">
+          <div className="merch-product-image"><img src="/images/merch/black-portrait-tshirt.jpg" width="1200" height="1200" alt="Mockup of a black Lalah Hathaway T-shirt with her portrait printed on the front." /></div>
+          <div className="merch-product-heading"><h2 id="tshirt-title">Lalah Hathaway T-shirt</h2><p className="merch-price">$50</p></div>
+          <p className="merch-description">A black T-shirt featuring Lalah’s portrait, printed on the front.</p>
+          <p className="merch-size-label">Black only · Sizes</p>
+          <ul className="merch-sizes" aria-label="T-shirt sizes">{["S", "M", "L", "XL", "2XL"].map(size => <li key={size}>{size}</li>)}</ul>
+        </article>
+      </section>
+      <p className="merch-image-note">Product mockups shown.</p>
+      <section className="merch-shipping" aria-labelledby="shipping-heading">
+        <h2 id="shipping-heading">Shipping &amp; dispatch</h2>
+        <dl>
+          <div><dt>Destinations</dt><dd>United States only</dd></div>
+          <div><dt>Flat-rate shipping</dt><dd>$8 per order<span>One shipping charge, including orders with both products.</span></dd></div>
+          <div><dt>Expected dispatch</dt><dd>Ships in 2–3 weeks<span>Delivery time is additional.</span></dd></div>
+        </dl>
+        <a className="text-link" href="/contact">Questions about merch? <ArrowUpRight size={16} aria-hidden="true" /></a>
+      </section>
       <section id="returns" className="merch-returns" aria-labelledby="returns-heading">
         <h2 id="returns-heading">Returns &amp; exchanges</h2>
         <p>Returns may be requested within 30 days of delivery. T-shirts must be unworn and unwashed, and vinyl must be unopened.</p>
