@@ -141,6 +141,10 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ring); outline-
 .thumbnail-fallback { position: absolute; bottom: 15%; font-size: 0.95rem; }
 .merch-panel { max-width: 600px; border-top: 1px solid #fff3dc66; padding-top: 2rem; }
 .merch-panel p { font-size: 1.15rem; margin-bottom: 2rem; }
+.merch-returns { max-width: 680px; margin-top: clamp(3rem, 6vw, 5rem); padding-top: 2rem; border-top: 1px solid #fff3dc66; scroll-margin-top: 2rem; }
+.merch-returns h2 { margin: 0 0 1.5rem; font-size: clamp(1.65rem, 3vw, 2rem); line-height: 1.2; }
+.merch-returns p { margin: 0 0 1.25rem; font-size: 1.05rem; line-height: 1.7; }
+.merch-returns .text-link { margin-top: 0.25rem; }
 .page-background { position: fixed; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
 .page-bio, .page-tour { background: transparent; }
 .page-bio::before, .page-tour::before { content: ""; position: fixed; inset: 0; z-index: -1; background: linear-gradient(90deg, #081c16d9, #081c1625 60%, #081c1640); }

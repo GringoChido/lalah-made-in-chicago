@@ -43,6 +43,16 @@ export default async function SectionPage({ params }: Props) {
     </>}
     {section === "videos" && <VideoGrid />}
     {section === "tour" && <TourWidget />}
-    {section === "merch" && <div className="merch-panel"><h2>The official shop</h2><p>Visit Lalah’s store for merchandise and availability.</p><a className="cream-button inline-button" href="https://lalahhathaway.com/home" target="_blank" rel="noopener noreferrer">Visit the store <ArrowUpRight size={19} aria-hidden="true" /></a></div>}
+    {section === "merch" && <>
+      <div className="merch-panel"><h2>The official shop</h2><p>Visit Lalah’s store for merchandise and availability.</p><a className="cream-button inline-button" href="https://lalahhathaway.com/home" target="_blank" rel="noopener noreferrer">Visit the store <ArrowUpRight size={19} aria-hidden="true" /></a></div>
+      <section id="returns" className="merch-returns" aria-labelledby="returns-heading">
+        <h2 id="returns-heading">Returns &amp; exchanges</h2>
+        <p>Returns may be requested within 30 days of delivery. T-shirts must be unworn and unwashed, and vinyl must be unopened.</p>
+        <p>Customers cover return shipping for changes of mind or size. Original shipping charges are not refunded for these returns. Size exchanges depend on availability.</p>
+        <p>If an item arrives damaged, defective or incorrect, contact us with your order number and photos. We’ll arrange a replacement or refund and cover any required return shipping.</p>
+        <p>Please contact us before sending anything back. Refunds are issued to the original payment method after the return is received and checked.</p>
+        <a className="text-link" href="/contact">Contact us about a return <ArrowUpRight size={16} aria-hidden="true" /></a>
+      </section>
+    </>}
   </PageShell>;
 }
