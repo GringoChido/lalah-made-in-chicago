@@ -26,8 +26,17 @@ export function LandingScene() {
     try { setReturnVisit(sessionStorage.getItem("lalah-room-visited") === "true"); sessionStorage.setItem("lalah-room-visited", "true"); } catch { /* Entrance is optional. */ }
   }, []);
   useEffect(() => {
+    const query = window.matchMedia("(max-width: 760px), (hover: none), (pointer: coarse)");
+    const resetMobileNavigation = () => {
+      if (query.matches) { setShowLinks(false); setActiveObject(null); }
+    };
+    resetMobileNavigation();
+    query.addEventListener("change", resetMobileNavigation);
+    return () => query.removeEventListener("change", resetMobileNavigation);
+  }, []);
+  useEffect(() => {
     const node = root.current;
-    const query = window.matchMedia("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)");
+    const query = window.matchMedia("(min-width: 761px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)");
     if (!node) return;
     let frame = 0;
     let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
@@ -57,8 +66,8 @@ export function LandingScene() {
   }, [paused, showLinks, activeObject]);
 
   return <main ref={root} className={`landing album-landing${showLinks ? " show-links" : ""}${paused ? " motion-paused" : ""}${returnVisit ? " return-visit" : ""}`}>
-    <a className="skip-link" href="#room-links">Skip to room links</a>
-    <div className="room" role="group" aria-label="Interactive record room">
+    <a className="skip-link" href="#site-navigation">Skip to site menu</a>
+    <div className="room" role="group" aria-label="Made in Chicago record room">
       <img className="room-image" src="/images/landing.webp" width="2400" height="1600" alt="Lalah Hathaway standing among records in a listening room." fetchPriority="high" />
       <div className="scene-shade" aria-hidden="true" />
       <div className="scene-title">
@@ -85,10 +94,10 @@ export function LandingScene() {
         {campaign.chicagoMemory && <div className="room-link room-link-memory" data-room-object="memory" data-room-label="A Chicago memory" style={{ left: `${memoryObject.x / 15}%`, top: `${memoryObject.y / 10}%`, width: `${memoryObject.w / 15}%`, height: `${memoryObject.h / 10}%` }}><ChicagoMemory><svg className="object-halo" viewBox={`${memoryObject.x} ${memoryObject.y} ${memoryObject.w} ${memoryObject.h}`} aria-hidden="true" preserveAspectRatio="none"><path d={memoryObject.path} /></svg></ChicagoMemory></div>}
       </nav>
     </div>
-    <header className="landing-header"><a className="home-identity" href="/" aria-label="Lalah Hathaway home">Lalah Hathaway</a><SiteMenu /></header>
+    <header id="site-navigation" className="landing-header" tabIndex={-1}><a className="home-identity" href="/" aria-label="Lalah Hathaway home">Lalah Hathaway</a><SiteMenu /></header>
     <div className="mobile-release" aria-hidden="true"><p className="eyebrow">The new album</p><div className="mobile-album-title">Made In<br />Chicago</div><p>{release.intro}</p></div>
     <RoomLabels root={root} activeId={activeObject} showAll={showLinks} />
     <div className="mobile-album-actions"><AlbumButton className="cream-button light-sweep"><Play size={16} fill="currentColor" aria-hidden="true" />Listen</AlbumButton><AlbumFilmButton label="Behind the album" /></div>
-    <footer className="landing-footer"><div className="landing-footer-text"><p className="desktop-instruction">Explore the room.</p><p className="touch-instruction">Tap a glowing object.</p><SiteCredit /></div><div className="room-controls"><button type="button" className="motion-button" onClick={() => setPaused(value => !value)} aria-pressed={paused} aria-label={paused ? "Resume room motion" : "Pause room motion"}>{paused ? <Play size={13} aria-hidden="true" /> : <Pause size={13} aria-hidden="true" />}</button><button type="button" className="show-links-button" aria-pressed={showLinks} onClick={() => setShowLinks(value => !value)}>{showLinks ? "Hide labels" : "Explore links"}<Plus size={15} aria-hidden="true" /></button></div></footer>
+    <footer className="landing-footer"><div className="landing-footer-text"><p className="desktop-instruction">Explore the room.</p><p className="touch-instruction">Use the menu to explore.</p><SiteCredit /></div><div className="room-controls"><button type="button" className="motion-button" onClick={() => setPaused(value => !value)} aria-pressed={paused} aria-label={paused ? "Resume room motion" : "Pause room motion"}>{paused ? <Play size={13} aria-hidden="true" /> : <Pause size={13} aria-hidden="true" />}</button><button type="button" className="show-links-button" aria-pressed={showLinks} onClick={() => setShowLinks(value => !value)}>{showLinks ? "Hide labels" : "Explore links"}<Plus size={15} aria-hidden="true" /></button></div></footer>
   </main>;
 }

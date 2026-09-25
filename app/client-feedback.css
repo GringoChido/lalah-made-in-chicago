@@ -89,20 +89,30 @@
 .widget-message { font-family: var(--utility-font); }
 .speaker-transition-cover { position: fixed; inset: 0; z-index: 1000; pointer-events: none; background-color: #16332a; background-image: repeating-linear-gradient(0deg, transparent 0 3px, #071b16 3px 5px), repeating-linear-gradient(90deg, #9b875a66 0 1px, transparent 1px 5px); }
 
-/* Continuous blurred amber light on touch screens, with no sharp contour.
-   Preserve hue, blur and width; reduce opacity by 40% from .85 to .51. */
-@media (hover: none), (pointer: coarse) {
-  .object-halo { filter: blur(3px); }
-  .object-halo path { stroke-width: 6px; stroke-dasharray: none; }
-  .album-landing .object-halo,
-  .album-landing .room-link:hover .object-halo,
-  .album-landing .room-link:focus-visible .object-halo,
-  .album-landing .room-link:focus-within .object-halo,
-  .album-landing.show-links .object-halo { opacity: .51; }
-}
 @media (orientation: portrait) {
   .show-links .mobile-release { opacity: 0; }
   .mobile-release { transition: opacity 180ms; }
+}
+
+/* Final artwork review: desktop keeps its interactions without edge shading. */
+@media (min-width: 761px) and (hover: hover) and (pointer: fine) {
+  .album-landing .scene-shade { display: none; }
+  .album-landing .landing-header, .album-landing .landing-footer { background: none; }
+  .album-landing .room-image, .album-landing .portrait-layer { filter: none; }
+}
+
+/* Mobile uses the top-right menu. display:none also removes hotspot tab stops. */
+@media (max-width: 760px), (hover: none), (pointer: coarse) {
+  .album-landing #room-links,
+  .album-landing .object-halo,
+  .album-landing .room-label-overlay,
+  .album-landing .room-controls,
+  .album-landing .hero-actions,
+  .album-landing .mobile-album-actions,
+  .album-landing .neon-layer,
+  .album-landing .desktop-instruction { display: none; }
+  .album-landing .touch-instruction { display: block; }
+  .album-landing.show-links .scene-title, .album-landing.show-links .mobile-release { opacity: 1; }
 }
 @media (max-width: 600px) {
   .campaign-dialog { width: calc(100vw - 1.25rem); }
